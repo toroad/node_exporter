@@ -8,10 +8,12 @@ require (
 	github.com/godbus/dbus v0.0.0-20190402143921-271e53dc4968
 	github.com/hodgesds/perf-utils v0.2.5
 	github.com/jsimonetti/rtnetlink v0.0.0-20210122163228-8d122574c736
+	github.com/kr/text v0.2.0 // indirect
 	github.com/lufia/iostat v1.1.0
 	github.com/mattn/go-xmlrpc v0.0.3
 	github.com/mdlayher/genetlink v1.0.0 // indirect
 	github.com/mdlayher/wifi v0.0.0-20200527114002-84f0b9457fdd
+	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/prometheus/client_golang v1.9.0
 	github.com/prometheus/client_model v0.2.0
 	github.com/prometheus/common v0.26.0
@@ -20,8 +22,12 @@ require (
 	github.com/safchain/ethtool v0.0.0-20200804214954-8f958a28363a
 	github.com/siebenmann/go-kstat v0.0.0-20200303194639-4e8294f9e9d5
 	github.com/soundcloud/go-runit v0.0.0-20150630195641-06ad41a06c4a
+	github.com/stretchr/testify v1.6.1 // indirect
+	golang.org/x/oauth2 v0.0.0-20210615190721-d04028783cf1 // indirect
 	golang.org/x/sys v0.0.0-20210124154548-22da62e12c0c
+	golang.org/x/text v0.3.4 // indirect
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6
+	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
 )
 
 go 1.14

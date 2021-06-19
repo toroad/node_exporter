@@ -118,7 +118,8 @@ endif
 %: common-% ;
 
 .PHONY: common-all
-common-all: precheck style check_license lint unused build test
+#common-all: precheck style check_license lint unused build test
+common-all: precheck style check_license lint build test
 
 .PHONY: common-style
 common-style:
@@ -202,24 +203,24 @@ endif
 .PHONY: common-staticcheck
 common-staticcheck: lint
 
-.PHONY: common-unused
-common-unused: $(GOVENDOR)
-ifdef GOVENDOR
-	@echo ">> running check for unused packages"
-	@$(GOVENDOR) list +unused | grep . && exit 1 || echo 'No unused packages'
-else
-ifdef GO111MODULE
-	@echo ">> running check for unused/missing packages in go.mod"
-	GO111MODULE=$(GO111MODULE) $(GO) mod tidy
-ifeq (,$(wildcard vendor))
-	@git diff --exit-code -- go.sum go.mod
-else
-	@echo ">> running check for unused packages in vendor/"
-	GO111MODULE=$(GO111MODULE) $(GO) mod vendor
-	@git diff --exit-code -- go.sum go.mod vendor/
-endif
-endif
-endif
+#.PHONY: common-unused
+#common-unused: $(GOVENDOR)
+#ifdef GOVENDOR
+#	@echo ">> running check for unused packages"
+#	@$(GOVENDOR) list +unused | grep . && exit 1 || echo 'No unused packages'
+#else
+#ifdef GO111MODULE
+#	@echo ">> running check for unused/missing packages in go.mod"
+#	GO111MODULE=$(GO111MODULE) $(GO) mod tidy
+#ifeq (,$(wildcard vendor))
+#	@git diff --exit-code -- go.sum go.mod
+#else
+#	@echo ">> running check for unused packages in vendor/"
+#	GO111MODULE=$(GO111MODULE) $(GO) mod vendor
+#	@git diff --exit-code -- go.sum go.mod vendor/
+#endif
+#endif
+#endif
 
 .PHONY: common-build
 common-build: promu
@@ -260,9 +261,12 @@ common-docker-manifest:
 .PHONY: promu
 promu: $(PROMU)
 
+PROMU_URL2 := /home/zhangjincai/promu-0.12.0.linux-amd64.tar.gz
+
 $(PROMU):
 	$(eval PROMU_TMP := $(shell mktemp -d))
-	curl -s -L $(PROMU_URL) | tar -xvzf - -C $(PROMU_TMP)
+	#curl -s -L $(PROMU_URL) | tar -xvzf - -C $(PROMU_TMP)
+	tar -xvzf $(PROMU_URL2) -C $(PROMU_TMP)
 	mkdir -p $(FIRST_GOPATH)/bin
 	cp $(PROMU_TMP)/promu-$(PROMU_VERSION).$(GO_BUILD_PLATFORM)/promu $(FIRST_GOPATH)/bin/promu
 	rm -r $(PROMU_TMP)
